@@ -1,10 +1,9 @@
 import { Router } from "express";
 import { createUser, deleteUser, readUser, updateUser } from "../controllers/user.controller.js";
-import { validateName } from "../middlewares/validateInput.middleware.js";
 
 const router = Router()
 
-router.route('/create-user').post(validateName, createUser)
+router.route('/create-user').post(createUser)
 
 router.route('/read-user/:userId').get(readUser)
 
