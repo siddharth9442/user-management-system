@@ -136,11 +136,11 @@ const readUser = async (req, res) => {
 const updateUser = async (req, res) => {
     const { userId } = req.params
 
-    const { Name, Email, Age, mobileNo, Address } = req.body
+    const { Name, Age, mobileNo, Address } = req.body
 
     // validation - non empty
     if (
-        [Name, Email, Age, Address, mobileNo].some(field => field === "")
+        [Name, Age, Address, mobileNo].some(field => field === "")
     ) {
         throw new ApiError(400, "All fields are required")   
     }
@@ -148,11 +148,6 @@ const updateUser = async (req, res) => {
     // name validation
     if (!validateName(Name)) {
         throw new ApiError(400, 'Name must be string or maximum 50 characters long')
-    }
-
-    // email validation
-    if (!validateEmail(Email)) {
-        throw new ApiError(400, 'Invalid email')
     }
 
     // age validation
@@ -183,7 +178,6 @@ const updateUser = async (req, res) => {
         {
             $set: {
                 Name,
-                Email,
                 Age,
                 Address,
                 mobileNo,
